@@ -1,0 +1,9 @@
+<h3>{{ name }}</h3>
+<p>
+    Topic: <input type="text" pInputText [(ngModel)]="topic" class="p-inputtext-sm">
+    <p-button label="Update" (click)="update()" style="margin-left: 1rem;"></p-button>
+</p>
+<p>
+    Logs:
+    <textarea pInputTextarea [value]="messages" style="width: 100%; height: 20rem; background-color: #eee;" #textarea [scrollTop]="textarea.scrollHeight"></textarea>
+</p>
