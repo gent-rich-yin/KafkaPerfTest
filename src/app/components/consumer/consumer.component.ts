@@ -8,7 +8,7 @@ import { PerfService } from 'src/app/services/perf.service';
 })
 export class ConsumerComponent implements OnInit {
   @Input() name = "";
-  topic: string = "";
+
   messages = "";
 
   intervalId: any;
@@ -16,8 +16,6 @@ export class ConsumerComponent implements OnInit {
   constructor(private perfService: PerfService) { }
 
   ngOnInit(): void {
-    this.perfService.getConsumerTopic(this.name).subscribe(topic => this.topic = topic);
-
     this.intervalId = setInterval(() => {
       this.perfService.getConsumerPerfMessage(this.name).subscribe(message => {
         this.messages += message + "\n";
@@ -29,10 +27,5 @@ export class ConsumerComponent implements OnInit {
     clearInterval(this.intervalId);
   }
 
-  update(): void {
-    this.perfService.setConsumerTopic(this.name, this.topic).subscribe(() => {
-      this.perfService.getConsumerTopic(this.name).subscribe(topic => this.topic = topic);
-    });
-  }
 
 }

@@ -1,0 +1,13 @@
+<div class="control-box-wrapper">
+    <h2>Broker Performance Test</h2>
+    <div class="control-box">
+        <label for="broker">Broker</label>
+        <p-dropdown [options]="brokers" [(ngModel)]="selectedBroker" optionLabel="name" optionValue="code"></p-dropdown>
+        <label for="topic">Topic</label>
+        <input id="topic" type="text" pInputText [(ngModel)]="topic" class="p-inputtext-sm">
+        <label for="messageSize">Message Size</label>
+        <input id="messageSize" type="text" pInputText [(ngModel)]="messageSize" class="p-inputtext-sm">
+        <p-button label="Start" (click)="start()" style="margin-left: 1rem;" [disabled]="started || !validConfig()"></p-button>
+        <p-button label="Stop" (click)="stop()" style="margin-left: 1rem;" [disabled]="!started"></p-button>
+    </div>
+</div>

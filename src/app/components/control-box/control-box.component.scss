@@ -1,0 +1,20 @@
+.control-box-wrapper {
+    margin: 2rem;
+    display: flex;
+    justify-content: space-between;
+
+    h2: {
+        display: inline-block;
+        font-size: 2.4rem;
+        font-weight: 700;
+    }
+
+    .control-box {
+        align-self: center;
+
+        label {
+            margin: 0 0.5rem;
+        }
+
+    }
+}
