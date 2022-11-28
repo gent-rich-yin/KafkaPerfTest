@@ -7,12 +7,19 @@ interface Broker {
   code: string
 }
 
+interface Source {
+  name: string,
+  code: string
+}
+
 @Component({
   selector: 'app-control-box',
   templateUrl: './control-box.component.html',
   styleUrls: ['./control-box.component.scss']
 })
 export class ControlBoxComponent implements OnInit {
+  sources: Source[];
+  selectedSource: string;
   brokers: Broker[];
   selectedBroker: Broker;
   topic = '';
@@ -20,6 +27,8 @@ export class ControlBoxComponent implements OnInit {
   started = false;
 
   constructor(private perfService: PerfService) { 
+    this.sources = [{ name: 'Cloud', code: 'Cloud' }, { name: 'On Premise', code: 'On Premise'}];
+    this.selectedSource = 'Cloud';
     this.brokers = [{ name: 'kafka', code: 'kafka' }, { name: 'pulsar', code: 'pulsar'}];
     this.selectedBroker = { name: 'kafka', code: 'kafka' };
   }
@@ -29,6 +38,14 @@ export class ControlBoxComponent implements OnInit {
 
   validConfig(): boolean {
     return this.topic !== '' && this.messageSize > 0;
+  }
+
+  changeSource(): void {
+    if( this.selectedSource === 'Cloud' ) {
+      this.perfService.ip_map = this.perfService.cloud_ip_map;
+    } else {
+      this.perfService.ip_map = this.perfService.on_premise_ip_map;
+    }
   }
 
   start(): void {

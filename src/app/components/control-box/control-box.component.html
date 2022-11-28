@@ -1,6 +1,8 @@
 <div class="control-box-wrapper">
     <h2>Broker Performance Test</h2>
     <div class="control-box">
+        <label for="source">Source</label>
+        <p-dropdown [options]="sources" [(ngModel)]="selectedSource" optionLabel="name" optionValue="code" (onChange)="changeSource()"></p-dropdown>
         <label for="broker">Broker</label>
         <p-dropdown [options]="brokers" [(ngModel)]="selectedBroker" optionLabel="name" optionValue="code"></p-dropdown>
         <label for="topic">Topic</label>

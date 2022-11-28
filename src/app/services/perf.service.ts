@@ -7,12 +7,21 @@ import { Observable } from 'rxjs';
 })
 export class PerfService {
 
-  ip_map: any = {
+  cloud_ip_map: any = {
     'KafkaPerfPublisher-1': '34.125.15.186',
     'KafkaPerfPublisher-2': '34.125.64.233',
     'KafkaPerfConsumer-1': '34.125.166.68',
     'KafkaPerfConsumer-2': '34.125.50.67'
   };
+
+  on_premise_ip_map: any = {
+    'KafkaPerfPublisher-1': 'snycfiaplnint03',
+    'KafkaPerfPublisher-2': 'snycfiaplnint04',
+    'KafkaPerfConsumer-1': 'snycfiaplnuat09',
+    'KafkaPerfConsumer-2': 'snycfiaplnuat10'
+  };
+
+  ip_map: any = this.cloud_ip_map;
 
   constructor(private http: HttpClient) { }
 
