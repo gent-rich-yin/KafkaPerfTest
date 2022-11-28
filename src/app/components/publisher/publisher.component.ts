@@ -10,7 +10,7 @@ export class PublisherComponent implements OnInit, OnDestroy {
   @Input() name = "";
   topic: string = "";
   messageSize = 0;
-  messagesPerSecond = 0;
+  // messagesPerSecond = 0;
   messages = "";
 
   intervalId: any;
@@ -20,7 +20,7 @@ export class PublisherComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.perfService.getPublisherTopic(this.name).subscribe(topic => this.topic = topic);
     this.perfService.getPublisherMessageSize(this.name).subscribe(messageSize => this.messageSize = messageSize);
-    this.perfService.getPublisherMessagesPerSecond(this.name).subscribe(messagesPerSecond => this.messagesPerSecond = messagesPerSecond);
+    // this.perfService.getPublisherMessagesPerSecond(this.name).subscribe(messagesPerSecond => this.messagesPerSecond = messagesPerSecond);
 
     this.intervalId = setInterval(() => {
       this.perfService.getPublisherPerfMessage(this.name).subscribe(message => {
@@ -40,8 +40,8 @@ export class PublisherComponent implements OnInit, OnDestroy {
     this.perfService.setPublisherMessageSize(this.name, this.messageSize).subscribe(() => {
       this.perfService.getPublisherMessageSize(this.name).subscribe(messageSize => this.messageSize = messageSize);
     })
-    this.perfService.setPublisherMessagesPerSecond(this.name, this.messagesPerSecond).subscribe(() => {
-      this.perfService.getPublisherMessagesPerSecond(this.name).subscribe(messagesPerSecond => this.messagesPerSecond = messagesPerSecond);
-    });
+    // this.perfService.setPublisherMessagesPerSecond(this.name, this.messagesPerSecond).subscribe(() => {
+    //   this.perfService.getPublisherMessagesPerSecond(this.name).subscribe(messagesPerSecond => this.messagesPerSecond = messagesPerSecond);
+    // });
   }
 }
