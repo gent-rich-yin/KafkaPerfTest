@@ -8,10 +8,10 @@ import { Observable } from 'rxjs';
 export class PerfService {
 
   cloud_ip_map: any = {
-    'KafkaPerfPublisher-1': '34.125.15.186',
-    'KafkaPerfPublisher-2': '34.125.64.233',
-    'KafkaPerfConsumer-1': '34.125.166.68',
-    'KafkaPerfConsumer-2': '34.125.50.67'
+    'KafkaPerfPublisher-1': '34.125.46.47',
+    'KafkaPerfPublisher-2': '34.125.55.232',
+    'KafkaPerfConsumer-1': '34.125.88.78',
+    'KafkaPerfConsumer-2': '34.125.69.151'
   };
 
   on_premise_ip_map: any = {
