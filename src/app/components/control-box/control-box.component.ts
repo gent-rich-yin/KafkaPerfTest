@@ -21,16 +21,26 @@ export class ControlBoxComponent implements OnInit {
   sources: Source[];
   selectedSource: string;
   brokers: Broker[];
-  selectedBroker: Broker;
+  selectedBroker: string;
   topic = '';
   messageSize = 0;
   started = false;
+
+  publisher_ports = {
+    'kafka': 9301,
+    'pulsar': 9311
+  };
+
+  consumer_ports = {
+    'kafka': 9401,
+    'pulsar': 9411
+  };
 
   constructor(private perfService: PerfService) { 
     this.sources = [{ name: 'Cloud', code: 'Cloud' }, { name: 'On Premise', code: 'On Premise'}];
     this.selectedSource = 'Cloud';
     this.brokers = [{ name: 'kafka', code: 'kafka' }, { name: 'pulsar', code: 'pulsar'}];
-    this.selectedBroker = { name: 'kafka', code: 'kafka' };
+    this.selectedBroker = 'kafka';
   }
 
   ngOnInit(): void {
@@ -46,6 +56,10 @@ export class ControlBoxComponent implements OnInit {
     } else {
       this.perfService.ip_map = this.perfService.on_premise_ip_map;
     }
+  }
+
+  changeBroker(): void {
+    this.updatePorts();
   }
 
   start(): void {
@@ -70,6 +84,11 @@ export class ControlBoxComponent implements OnInit {
     ).subscribe(() => {
       this.started = false;
     });    
+  }
+
+  updatePorts(): void {
+    this.perfService.publisher_port = this.publisher_ports[this.selectedBroker as keyof typeof this.publisher_ports];
+    this.perfService.consumer_port = this.consumer_ports[this.selectedBroker as keyof typeof this.consumer_ports];
   }
 
 }

@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PerfService {
+  publisher_port = 9301;
+  consumer_port = 9401;
 
   cloud_ip_map: any = {
     'KafkaPerfPublisher-1': '34.125.46.47',
@@ -26,43 +28,35 @@ export class PerfService {
   constructor(private http: HttpClient) { }
 
   getPublisherPerfMessage(name: string): Observable<string> {
-    return this.http.get(`http://${this.ip_map[name]}:9301/perfMessage`, {responseType: 'text'});
+    return this.http.get(`http://${this.ip_map[name]}:${this.publisher_port}/perfMessage`, {responseType: 'text'});
   }
 
   getPublisherTopic(name: string): Observable<string> {
-    return this.http.get(`http://${this.ip_map[name]}:9301/topic`, {responseType: 'text'});
+    return this.http.get(`http://${this.ip_map[name]}:${this.publisher_port}/topic`, {responseType: 'text'});
   }
 
   getPublisherMessageSize(name: string): Observable<number> {
-    return this.http.get<number>(`http://${this.ip_map[name]}:9301/messageSize`);
+    return this.http.get<number>(`http://${this.ip_map[name]}:${this.publisher_port}/messageSize`);
   }
 
-  // getPublisherMessagesPerSecond(name: string): Observable<number> {
-  //   return this.http.get<number>(`http://${this.ip_map[name]}:9301/messagesPerSecond`);
-  // }
-
   setPublisherTopic(name: string, topic: string): Observable<any> {
-    return this.http.post(`http://${this.ip_map[name]}:9301/topic`, topic);
+    return this.http.post(`http://${this.ip_map[name]}:${this.publisher_port}/topic`, topic);
   }
 
   setPublisherMessageSize(name: string, messageSize: number): Observable<any> {
-    return this.http.post(`http://${this.ip_map[name]}:9301/messageSize`, messageSize);
+    return this.http.post(`http://${this.ip_map[name]}:${this.publisher_port}/messageSize`, messageSize);
   }
 
-  // setPublisherMessagesPerSecond(name: string, messagesPerSecond: number): Observable<any> {
-  //   return this.http.post(`http://${this.ip_map[name]}:9301/messagesPerSecond`, messagesPerSecond);
-  // }
-
   getConsumerPerfMessage(name: string): Observable<string> {
-    return this.http.get(`http://${this.ip_map[name]}:9401/perfMessage`, {responseType: 'text'});
+    return this.http.get(`http://${this.ip_map[name]}:${this.consumer_port}/perfMessage`, {responseType: 'text'});
   }
 
   getConsumerTopic(name: string): Observable<string> {
-    return this.http.get(`http://${this.ip_map[name]}:9401/topic`, {responseType: 'text'});
+    return this.http.get(`http://${this.ip_map[name]}:${this.consumer_port}/topic`, {responseType: 'text'});
   }
 
   setConsumerTopic(name: string, topic: string): Observable<any> {
-    return this.http.post(`http://${this.ip_map[name]}:9401/topic`, topic);
+    return this.http.post(`http://${this.ip_map[name]}:${this.consumer_port}/topic`, topic);
   }
 
 }

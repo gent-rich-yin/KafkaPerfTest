@@ -4,7 +4,7 @@
         <label for="source">Source</label>
         <p-dropdown [options]="sources" [(ngModel)]="selectedSource" optionLabel="name" optionValue="code" (onChange)="changeSource()"></p-dropdown>
         <label for="broker">Broker</label>
-        <p-dropdown [options]="brokers" [(ngModel)]="selectedBroker" optionLabel="name" optionValue="code"></p-dropdown>
+        <p-dropdown [options]="brokers" [(ngModel)]="selectedBroker" optionLabel="name" optionValue="code" (onChange)="changeBroker()"></p-dropdown>
         <label for="topic">Topic</label>
         <input id="topic" type="text" pInputText [(ngModel)]="topic" class="p-inputtext-sm">
         <label for="messageSize">Message Size</label>
