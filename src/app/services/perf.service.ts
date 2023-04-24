@@ -10,10 +10,10 @@ export class PerfService {
   consumer_port = 9401;
 
   cloud_ip_map: any = {
-    'KafkaPerfPublisher-1': '34.125.46.47',
-    'KafkaPerfPublisher-2': '34.125.55.232',
-    'KafkaPerfConsumer-1': '34.125.88.78',
-    'KafkaPerfConsumer-2': '34.125.69.151'
+    'KafkaPerfPublisher-1': '34.125.34.53',
+    'KafkaPerfPublisher-2': '34.125.250.21',
+    'KafkaPerfConsumer-1': '34.125.190.65',
+    'KafkaPerfConsumer-2': '34.125.26.4'
   };
 
   on_premise_ip_map: any = {
