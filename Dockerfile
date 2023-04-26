@@ -9,3 +9,5 @@ RUN curl -o kafka-perf-test.gz https://storage.googleapis.com/code-richardyin202
 RUN tar xzf kafka-perf-test.gz
 
 USER nginx
+
+CMD ["nginx" "-g" "daemon off;"]
