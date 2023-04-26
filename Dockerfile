@@ -8,6 +8,8 @@ RUN curl -o kafka-perf-test.gz https://storage.googleapis.com/code-richardyin202
 
 RUN tar xzf kafka-perf-test.gz
 
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
 USER 101
 
 CMD ["nginx" "-g" "daemon off;"]
